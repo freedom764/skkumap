@@ -1,5 +1,17 @@
 //localStorage.clear();
   
+$(document).ready(function() {
+    // Get the room number from localStorage
+    var selectedRoomNumber = localStorage.getItem('selectedRoomNumber');
+    if (selectedRoomNumber) {
+        // Set the value of the input box
+        $('#roomNumberInput').val(selectedRoomNumber);
+        // Remove the room number from localStorage
+        localStorage.removeItem('selectedRoomNumber');
+    }
+});
+
+
 const firebaseConfig = {
     apiKey: "AIzaSyDcP60pBSlRgrSxOlBKeS1NGmg1IM8glGA",
     authDomain: "skku-map-5ee88.firebaseapp.com",

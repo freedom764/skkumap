@@ -84,6 +84,14 @@ auth.onAuthStateChanged(function(user) {
                 // Append the checkbox and label to the container
                 checkboxContainer.append(checkboxInput, checkboxLabel);
 
+                roomNumberElement.addEventListener('click', function() {
+                    // Store the room number in localStorage
+                    localStorage.setItem('selectedRoomNumber', roomNumber);
+                    // Redirect to home.html
+                    window.location.href = 'home.html';
+                });
+                
+
                 db.ref('users/' + userId + '/favorites/' + roomNumber).once('value', function(snapshot) {
                     if (snapshot.exists()) {
                         // If the room number is in the user's favorites, set the checkbox to be checked

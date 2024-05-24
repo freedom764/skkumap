@@ -79,6 +79,14 @@ auth.onAuthStateChanged(function(user) {
                 favorites_container.append(roomNumberElement);
                 favorites_content_container.append(favorites_container);
 
+                roomNumberElement.addEventListener('click', function() {
+                    // Store the room number in localStorage
+                    localStorage.setItem('selectedRoomNumber', roomNumber);
+                    // Redirect to home.html
+                    window.location.href = 'home.html';
+                });
+                
+
                 checkboxInput.addEventListener('change', function() {
                     $("body").css("cursor", "progress");
                     $(":button").prop("disabled", true);
