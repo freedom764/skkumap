@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Registration</title>
+  </head>
+  <body>
+    <div class="wrapper" id="wrapper">
+      <h1>Registration</h1>
+    
+      <div class="inputBox">
+        <input type="text" placeholder="Email" id="email" required>
+        <i class='bx bxs-envelope'></i>
+      </div>
+      <div class="inputBox">
+        <input type="password" placeholder="Password" id="password" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <div class="inputBox">
+        <input type="password" placeholder="Repeat Password" id="repassword" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <button class="loginBtn" id="signUpBtn">Sign Up</button>
+      <div class="registerBtn">
+        <p>Have an account? <a href="login.html">Sign In</a>
+        </p>
+      </div>
+    </div>
+    <script type="text/javascript" src="start.js"></script>
+  </body>
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+import {
+	initializeApp
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+import {
+	getAuth,
+	createUserWithEmailAndPassword,
+    signOut
+} from 'https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js'
+import {
+	getDatabase,
+	set,
+	ref,
+	get
+} from 'https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js'
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyDcP60pBSlRgrSxOlBKeS1NGmg1IM8glGA",
+    authDomain: "skku-map-5ee88.firebaseapp.com",
+    databaseURL: "https://skku-map-5ee88-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "skku-map-5ee88",
+    storageBucket: "skku-map-5ee88.appspot.com",
+    messagingSenderId: "586777225468",
+    appId: "1:586777225468:web:39d78a912e0e0d562f4f79"
+  };
+
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const auth = getAuth();
+
+
+
+$("#signUpBtn").click(function() {
+	//Using loading bar
+	var loader_container = document.createElement('div')
+	loader_container.setAttribute('class', 'loader_container')
+
+	var loader = document.createElement('div')
+	loader.setAttribute('class', 'loader')
+
+	loader_container.append(loader)
+	wrapper.append(loader_container)
+
+	// Disable all input elements
+	$("input, button").prop("disabled", true);
+
+	var email = $("#email").val();
+	var password = $("#password").val();
+    var repassword = $("#repassword").val();
+
+	// Check if the username is at least 6 characters
+
+	// Check if the email is valid using a simple regex
+	var emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+	if (!emailRegex.test(email)) {
+		alert("Please enter a valid email!");
+		// Enable all input elements
+		$("input, button").prop("disabled", false);
+		loader_container.style.display = "none";
+		return;
+	}
+
+	// Check if the password is at least 6 characters
+	if (password.length < 6) {
+		alert("Password must be at least 6 characters!");
+		// Enable all input elements
+		$("input, button").prop("disabled", false);
+		loader_container.style.display = "none";
+		return;
+	}
+
+    if (password!=repassword) {
+		alert("Passwords do not match!");
+		// Enable all input elements
+		$("input, button").prop("disabled", false);
+		loader_container.style.display = "none";
+		return;
+	}
+
+	createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+
+        // Store the username in the database
+        return set(ref(database, 'users/' + user.uid), {
+            email: email
+        });
+    })
+    .then(() => {
+        // Sign out the user
+        auth.signOut();
+
+        alert("Registered Successfully!");
+        window.location.href = 'login.html';
+
+        // Enable all input elements
+        $("input, button").prop("disabled", false);
+        loader_container.style.display = "none";
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        loader_container.style.display = "none";
+        if (errorCode === 'auth/email-already-in-use') {
+            alert("The email is already registered!");
+        } else {
+            alert(errorMessage);
+        }
+
+        // Enable all input elements
+        $("input, button").prop("disabled", false);
+    });
+
+
+});
+
+
+</script> 
+
+</html>

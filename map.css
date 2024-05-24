@@ -1,0 +1,183 @@
+html * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+.page-wrapper {
+    width: 100%;
+    height: 100vh; /* Set a specific height */
+    display: flex; 
+    flex-direction: column; 
+
+  }
+  .nav-wrapper {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1000; 
+  }
+  
+  .navbar {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+    height: 4rem;
+    overflow: hidden;
+    background-color: #408a7e;
+  }
+  .logo {
+    font-size: clamp(1rem, 3vw, 2rem);
+    
+    text-align: center;
+  font-weight: 900;
+  color: white;
+    width: auto;
+    justify-self: start;
+    margin-left: clamp(1rem, 3vw, 2rem);
+  }
+  iframe{
+    height: 100%;
+    width: 100%;
+
+    border: none; 
+    }
+    #map2, #map3 {
+      height: 100%;
+      width: 100%;
+      border: none;
+  }
+
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        justify-self: end;
+      }
+      
+      .nav-item a {
+        color: white;
+        margin: 1rem;
+        font-size: 0.9rem;
+        font-weight: 400;
+        text-decoration: none;
+        transition: color 0.3s ease-out;
+      }
+      
+      .nav-item a:hover {
+        color: #f0f2f5;
+      }
+
+      .menu-toggle .bar {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        margin: 5px auto;
+        -webkit-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+      }
+      
+      .menu-toggle {
+        justify-self: end;
+        margin-right: 25px;
+        display: none;
+      }
+      
+      .menu-toggle:hover {
+        cursor: pointer;
+      }
+      
+      #mobile-menu.is-active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      
+      #mobile-menu.is-active .bar:nth-child(1) {
+        -webkit-transform: translateY(8px) rotate(45deg);
+        -ms-transform: translateY(8px) rotate(45deg);
+        -o-transform: translateY(8px) rotate(45deg);
+        transform: translateY(8px) rotate(45deg);
+      }
+      
+      #mobile-menu.is-active .bar:nth-child(3) {
+        -webkit-transform: translateY(-8px) rotate(-45deg);
+        -ms-transform: translateY(-8px) rotate(-45deg);
+        -o-transform: translateY(-8px) rotate(-45deg);
+        transform: translateY(-8px) rotate(-45deg);
+      }
+      
+      @media only screen and (max-width: 720px) {
+        /* MOBILE NAVIGATION */
+      
+        .navbar ul {
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          justify-content: start;
+          top: 55px;
+          background-color: #408a7e;
+          width: 100%;
+          height: calc(100vh - 55px);
+          transform: translate(-101%);
+          text-align: center;
+          overflow: hidden;
+        }
+      
+        .navbar li {
+          padding: 15px;
+        }
+      
+        .navbar li:first-child {
+          margin-top: 50px;
+        }
+      
+        .navbar li a {
+          font-size: 1rem;
+        }
+      
+        .menu-toggle,
+        .bar {
+          display: block;
+          cursor: pointer;
+        }
+      
+        .mobile-nav {
+          transform: translate(0%) !important;
+        }
+      }
+    
+    
+      ::selection {
+        background-color: #408a7e;
+        color: #fff;
+      }
+     
+      :focus{outline: none;}
+
+      .bottom-nav { 
+        background-color: #408a7e; 
+        display: flex; 
+        justify-content: center; /* Align items in the center */
+        gap: 0; /* Remove gap between items */
+        align-items: center; 
+        position: fixed; 
+        bottom: 0; 
+        width: 100%; 
+    } 
+
+.bottom-nav a { 
+    color: #fff; 
+    text-align: center; 
+    padding: 1rem; 
+    text-decoration: none; 
+    font-size: 0.9rem;
+} 
+
+.bottom-nav a:hover { 
+    background-color: #57b1a2; 
+} 
+
+.bottom-nav a .icon { 
+    margin-right: 8px; 
+} 
+

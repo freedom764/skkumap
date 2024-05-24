@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="map.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="openseadragon-bin-4.1.1\openseadragon.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>SKKU MAP</title>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div class="nav-wrapper">
+        <nav class="navbar">
+          <div class="logo">SKKU MAP</div>
+          <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+          <ul class="nav no-search">
+            <li class="nav-item">
+              <a href="home.html">Choose Lecture Room</a>
+            </li>
+            <li class="nav-item">
+              <a href="favorites.html">Favorites</a>
+            </li>
+            <li class="nav-item">
+              <a href="history.html">History</a>
+            </li>
+            <li class="nav-item">
+              <a href="profile.html">My Profile</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <iframe id="map1" allow="geolocation *"></iframe>
+      <div id="map2" style="display:none;"></div>
+      <div id="map3" style="display:none;"></div>
+
+
+
+      <nav class="bottom-nav">
+        <a href="#map" id="showMap">
+          <i class="fas fa-map icon"></i>Show External Map
+        </a>
+        <a href="#first" id="firstMap">
+          <i class="fas fa-door-open icon"></i>First Floor
+        </a>
+        <a href="#destination" id="destMap">
+          <i class="fas fa-building icon"></i>
+          <span id="floorText">Destination Floor</span>
+        </a>
+      </nav>
+    </div>
+    <script type="text/javascript" src="map.js"></script>
+  </body>
+</html>
