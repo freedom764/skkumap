@@ -52,7 +52,7 @@ function callAPI() {
   
 
     console.log("sendrequest called");
-    fetch('http://43.203.169.199:8000/api/v1/find', {
+    fetch('http://3.38.208.78:8000/api/v1/find', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
